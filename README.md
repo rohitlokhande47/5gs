@@ -1,6 +1,12 @@
 
 # **OpenAirInterface 5G Core Network with MEC Integration**
 
+## **Team Members**
+- **Mohit Ritwik Yernena** (202251071)
+- **Rohit Lokhande** (202251068)
+- **Narendra Deshmukh** (202251036)
+- **Susmit kumar Bharati** (202251138)
+
 ## **Project Overview**
 This project demonstrates the setup and deployment of a 5G Core Network using **OpenAirInterface (OAI)** with Docker containers. The architecture integrates essential 5G core network functions, including AMF, SMF, UPF, NRF, UDM, and UDR, alongside **Multi-access Edge Computing (MEC)**. By leveraging tools such as **UERANSIM** for UE and gNB simulation, the project showcases edge computing's ability to enhance latency-sensitive applications like video streaming, AR/VR, IoT, and real-time analytics.
 
@@ -68,19 +74,37 @@ The system architecture is designed with modularity and extensibility in mind.
 ### **Installation**:
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-repository/oai-5g-core
-   cd oai-5g-core
+   git@gitlab.eurecom.fr:oai/cn5g/oai-cn5g-fed.git
+   cd oai-cn5g-fed-master
    ```
 2. **Deploy the 5G Core with Docker Compose**:
    ```bash
    docker-compose -f docker-compose-basic-vpp-nrf.yaml up -d
    ```
-3. **Run UERANSIM** to simulate UE and gNB behavior:
+3. **UERANSIM deploy** to simulate UE and gNB behavior:
+   ```bash
+   docker-compose -f docker-compose-ueransim-vpp.yaml up -d
+   ```
+
+4. **Run UERANSIM** to simulate UE and gNB behavior:
    ```bash
    docker run -it --network host --name ueransim ueransim:latest
    ```
 
 ---
+
+## Network Testing in UE Simulation Environment
+
+This section describes how to test network connectivity, monitor traffic, and measure bandwidth within the UE simulation environment.
+
+## **1. Ping Test**
+
+The `ping` command checks connectivity between the UE interface and an external server (e.g., google.com).
+
+### **Command**:
+```bash
+docker exec -it ueransim ping -c 3 -I uesimtun0 google.com
+```
 
 ## **Traffic Monitoring and Testing**
 1. **Monitor Network Interfaces**:
